@@ -1,5 +1,3 @@
 # JavaScript30
 
-Starter Files + Completed solutions for the JavaScript 30 Day Challenge. 
-
-(it's not up yet - soon though!)
+These starter files and completed solutions came from Wes Bos at [https://javascript30.com/](https://javascript30.com/)
