@@ -43,10 +43,42 @@
   <ul id="bands"></ul>
 
 <script>
-const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+  const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
 
+  const articles = ["The", "A", "An"]
+
+  let sortedBands = bands.sort((a,b)=> {
+    let aSplit = a.split(" ");
+    let bSplit = b.split(" ");
+
+    let newA = articles.indexOf(aSplit[0]) >=0 ? aSplit[1] : aSplit[0];
+    let newB = articles.indexOf(bSplit[0]) >=0 ? bSplit[1] : bSplit[0];
+
+    return newA > newB ? 1: -1
+  })
+  console.log(sortedBands);
+
+  // WES WAY OF SORTING IT WITH REGEX
+
+  // function strip(bandName){
+  //   return bandName.replace(/^(a |the |an )/i, '').trim();
+  // }
+
+  // const sortedBands = bands.sort((a,b) => strip(a) > strip(b) ? 1 : -1);
+
+  // console.log(sortedBands);
+
+  document.querySelector('#bands').innerHTML = 
+    sortedBands
+      .map((band)=> `<li>${band}</li>`)
+      .join('')
 
 </script>
 
 </body>
 </html>
+
+
+
+
+

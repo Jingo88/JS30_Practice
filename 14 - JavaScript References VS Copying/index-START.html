@@ -7,10 +7,39 @@
 <body>
 
   <script>
+    //PASS BY VALUE FOR PRIMITIVES
     // start with strings, numbers and booleans
+    let age = 28;
+    let age2 = age;
+    console.log(age, age2);
+    age = 35;
+    console.log(age,age2);
 
+    let name = "Jason";
+    let name2 = name;
+    console.log(name, name2)
+    name = "Julia"
+    console.log(name, name2)
+
+    let bool = true;
+    let bool2 = bool;
+    console.log(bool, bool2);
+    bool = false;
+    console.log(bool, bool2);
+
+    // PASS BY REFERENCE FOR OBJECTS
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    const team = players;
+    console.log(players);
+    console.log(team)
+
+    team[2] = "Julia";
+    players[3] = "Jason";
+
+    console.log(players);
+    console.log(team)
 
     // and we want to make a copy of it.
 
@@ -25,6 +54,12 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+    // DIFFERENT WAYS TO MAKE COPIES OF AN ARRAY
+
+    const team2 = players.slice(); 
+    const team3 = [].concat(players);
+    const team4 = [...players]; // ES6 spread operator will take all the values from the iterable and insert them into the container
+    const team5 = Array.from(players);
 
     // one day
 
@@ -38,15 +73,63 @@
 
     // with Objects
 
+    const person = {
+        name:  "Jason Ng",
+        age: 28
+    };
+
     // and think we make a copy:
+    // THIS IS STILL A REFERENCE 
+    // const other = person;
+    // other.age = 35;
+    // console.log(person)
+    // Still changing person
 
     // how do we take a copy instead?
+
+    const other2 = Object.assign({}, person, {age: 35})
+    console.log(other2);
 
     // We will hopefully soon see the object ...spread
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
 
+    // Object.assign only makes value copies one level deep. 
+    // So if you are copying a object with nested data structures those nested items will be references
+
+    const jason = {
+        name: "Jason",
+        age : 28,
+        social: {
+            twitter: "@jsoning",
+            facebook: "idk"
+        }
+    }
+
+    // const dev = Object.assign({}, jason);
+    // dev.social.facebook = "yes you do"
+    // // Both console logs will have "yes you do"
+    // console.log(jason);
+    // console.log(dev);
+
+    const dev2 = JSON.parse(JSON.stringify(jason));
+
+
+
   </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
